@@ -4,7 +4,7 @@ A clean, minimalist web application that extracts tracklists from NTS Radio epis
 
 ## 🎵 Live Demo
 
-[Coming Soon - Deploy to see your URL here]
+**https://nts-extractor.vercel.app**
 
 ## ✨ Features
 
@@ -43,7 +43,7 @@ A clean, minimalist web application that extracts tracklists from NTS Radio epis
 
 ### Key Components
 
-**HTML Parsing** (`vercel_app.py:18-61`)
+**HTML Parsing** (`api/index.py:18-61`)
 ```python
 def extract_tracklist_from_html(html: str)
 ```
@@ -51,7 +51,7 @@ def extract_tracklist_from_html(html: str)
 - Extracts the JSON array using bracket counting
 - Handles escaped characters and nested objects
 
-**Track Filtering** (`vercel_app.py:64-80`)
+**Track Filtering** (`api/index.py:64-80`)
 ```python
 def is_unreleased_track(title: str) -> bool
 ```
@@ -67,11 +67,12 @@ def is_unreleased_track(title: str) -> bool
 
 ```
 nts-extractor/
-├── vercel_app.py           # Main Flask application
-├── vercel.json             # Vercel deployment config
-├── requirements_vercel.txt # Python dependencies
+├── api/
+│   └── index.py            # Main Flask application (serverless)
 ├── templates/
 │   └── index_vercel.html   # Frontend HTML/CSS/JS
+├── vercel.json             # Vercel deployment config
+├── requirements.txt        # Python dependencies
 └── README.md               # This file
 ```
 
@@ -97,19 +98,20 @@ uv venv
 source .venv/bin/activate
 
 # Install dependencies
-pip install -r requirements_vercel.txt
+pip install -r requirements.txt
 # Or with uv
-uv pip install -r requirements_vercel.txt
+uv pip install -r requirements.txt
 ```
 
 ### Running Locally
 
 ```bash
-# Start the Flask development server
-python vercel_app.py
+# For local testing, you can use the development script:
+# (Note: The main app runs from api/index.py on Vercel)
+python api/index.py
 
 # App will be available at:
-# http://localhost:8000
+# http://localhost:5000
 ```
 
 ### Testing
