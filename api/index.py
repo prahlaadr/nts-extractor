@@ -11,7 +11,6 @@ import csv
 import io
 from datetime import datetime
 import re
-import os
 
 app = Flask(__name__, template_folder='../templates')
 
