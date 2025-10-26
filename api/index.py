@@ -226,7 +226,5 @@ def download_csv():
     )
 
 
-# Export the Flask app for Vercel
-def handler(event, context):
-    """Vercel serverless handler"""
-    return app(event, context)
+# Export the Flask app for Vercel - this is the WSGI application
+# Vercel will automatically call this when requests come in
